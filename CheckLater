@@ -1,0 +1,11 @@
+//(^< ............ ............ ............ Modulo Productos
+Bugs:
+ -No inserta en orden, se salta los numeros de codigo
+ -Crear metodo ordenar por codigo en lista circular
+ -Verificar si el codigo esta relacionado con factura antes de modificar
+ -Verificar si producto esta relacionado con factura antes de eliminar
+ -Agregar criterios de busqueda
+ -Al modificar ordenar los codigos
+ -Al modificar verificar que no se repita el codigo
+
+dot -Tpng ARCHIVO.dot -o ARCHIVO.png
