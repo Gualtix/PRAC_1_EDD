@@ -8,4 +8,7 @@ Bugs:
  -Al modificar ordenar los codigos
  -Al modificar verificar que no se repita el codigo
 
+//(^< ............ ............ ............ Modulo Clientes
+ -Verificar Insertar en Orden
+
 dot -Tpng ARCHIVO.dot -o ARCHIVO.png

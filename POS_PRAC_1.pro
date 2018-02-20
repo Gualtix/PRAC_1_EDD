@@ -33,7 +33,11 @@ HEADERS += \
     dc_list.h \
     doublenode.h \
     product.h \
-    jsonreader.h
+    jsonreader.h \
+    cliente.h \
+    simplelist.h \
+    factura.h \
+    simplenode.h
 
 FORMS += \
         mainwindow.ui

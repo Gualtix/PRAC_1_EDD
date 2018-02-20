@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tabProductos">
      <attribute name="title">
@@ -126,6 +126,26 @@
         <height>241</height>
        </rect>
       </property>
+      <column>
+       <property name="text">
+        <string>Codigo</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nombre</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Precio</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Unidades</string>
+       </property>
+      </column>
      </widget>
      <widget class="QPlainTextEdit" name="tboxDescription">
       <property name="geometry">
@@ -266,15 +286,220 @@
      <attribute name="title">
       <string>Clientes</string>
      </attribute>
+     <widget class="QPushButton" name="btnDeleteClient">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>470</y>
+        <width>91</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Eliminar</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tblClients">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>461</width>
+        <height>351</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>Nit</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nombre</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Facturas</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QLineEdit" name="tboxSearchClient">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>10</y>
+        <width>391</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnNewClient">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>470</y>
+        <width>91</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nuevo</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnSaveClient">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>470</y>
+        <width>91</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Guardar</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>13</x>
+        <y>10</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Buscar:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="tboxCode_2">
+      <property name="geometry">
+       <rect>
+        <x>149</x>
+        <y>599</y>
+        <width>631</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>400</y>
+        <width>461</width>
+        <height>58</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="text">
+          <string>Nit:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="tboxClientNit"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="text">
+          <string>Nombre:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="tboxClientName"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>10</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Facturas Asociadas:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnNuevaFactura">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>400</y>
+        <width>261</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nueva Factura</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnEliminarFactura">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>460</y>
+        <width>261</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Eliminar Factura</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="listboxFacturas">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>40</y>
+        <width>261</width>
+        <height>351</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tabFacturas">
      <attribute name="title">
       <string>Facturas</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab">
-     <attribute name="title">
-      <string>Page</string>
      </attribute>
     </widget>
    </widget>
@@ -354,7 +579,18 @@
   <tabstop>btnNew</tabstop>
   <tabstop>btnSave</tabstop>
   <tabstop>btnDelete</tabstop>
+  <tabstop>tboxSearchClient</tabstop>
+  <tabstop>tblClients</tabstop>
+  <tabstop>listboxFacturas</tabstop>
+  <tabstop>tboxClientNit</tabstop>
+  <tabstop>tboxClientName</tabstop>
+  <tabstop>btnNewClient</tabstop>
+  <tabstop>btnSaveClient</tabstop>
+  <tabstop>btnDeleteClient</tabstop>
+  <tabstop>btnNuevaFactura</tabstop>
+  <tabstop>btnEliminarFactura</tabstop>
   <tabstop>tabGeneral</tabstop>
+  <tabstop>tboxCode_2</tabstop>
  </tabstops>
  <resources/>
  <connections/>
