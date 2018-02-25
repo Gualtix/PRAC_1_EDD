@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "dc_list.h"
+//#include "dc_list.h"
 
 int main(int argc, char *argv[])
 {
@@ -8,8 +8,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    DC_List * P = new DC_List();
-    DoubleNode * S;
+    //DC_List * P = new DC_List();
+    //DoubleNode * S;
 
     /*
 

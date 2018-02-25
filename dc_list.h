@@ -80,8 +80,9 @@ public:
 
             }
 
-            system("dot -Tpng Productos.dot -o Prods.png");
-            system("xdg-open /home/wrm/build-POS_PRAC_1-Desktop_Qt_5_10_0_GCC_64bit-Debug/Prods.png");
+            //system("dot -Tpng Productos.dot -o Prods.png");
+            //system("xdg-open /home/wrm/build-POS_PRAC_1-Desktop_Qt_5_10_0_GCC_64bit-Debug/Prods.png");
+            system("xdg-open ./Productos.dot");
 
         }
         else{
@@ -133,7 +134,7 @@ public:
     int InsertSortedByCode(Product * TmpProd){
         if(!InsertWhenEmpty(TmpProd)){
             int Rank = StringRangeReturn(TmpProd->Code);
-            TmpProd->SortValue = Rank;
+            //TmpProd->SortValue = Rank;
 
             InsertAt(Rank,TmpProd);
             return Rank;

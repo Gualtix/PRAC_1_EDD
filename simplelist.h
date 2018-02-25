@@ -2,6 +2,7 @@
 #define SIMPLELIST_H
 
 #include "simplenode.h"
+#include "product.h"
 #include "QFile"
 #include "QTextStream"
 
@@ -26,7 +27,11 @@ public:
 
     }
 
-    //(^< ............ ............ ............ Graficar Lista
+    //(^< ............ ............ ............ ............ ............ ............ ............ ............ ............ ............
+    //(^< ............ ............ ............ ............ ............ C L I E N T
+    //(^< ............ ............ ............ ............ ............ ............ ............ ............ ............ ............
+
+    //(^< ............ ............ ............ ............ ............ Graficar Lista
     void DrawList(){
 
         //Graficar si la lista tiene mas de un elemento
@@ -44,7 +49,7 @@ public:
                 SimpleNode * TmpNode = First;
                 QString Nit  = TmpNode->Clt->Nit;
                 QString Name  = TmpNode->Clt->Name;
-                QString Fact = "Q "+QString::number(TmpNode->Clt->GetFactNum());
+                QString Fact = "Q "+QString::number(TmpNode->Clt->Lista_de_Facturas->ListSize);
 
                 while (cnt < ListSize) {
 
@@ -71,7 +76,7 @@ public:
                         cnt++;
                         Nit = TmpNode->Clt->Nit;
                         Name = TmpNode->Clt->Name;
-                        Fact = "Q "+QString::number(TmpNode->Clt->GetFactNum());
+                        Fact = "Facturas "+QString::number(TmpNode->Clt->Lista_de_Facturas->ListSize);
                     }
                     else{
                         break;
@@ -85,8 +90,11 @@ public:
 
             }
 
-            system("dot -Tpng Clientes.dot -o Clients.png");
-            system("xdg-open /home/wrm/build-POS_PRAC_1-Desktop_Qt_5_10_0_GCC_64bit-Debug/Clients.png");
+            //system("dot -Tpng Clientes.dot -o Clients.png");
+            //system("xdg-open /home/wrm/build-POS_PRAC_1-Desktop_Qt_5_10_0_GCC_64bit-Debug/Clients.png");
+
+            //system("dot -Tpng Clientes.dot -o Clients.png");
+            system("xdg-open ./Clientes.dot");
 
         }
         else{
@@ -94,7 +102,7 @@ public:
         }
     }
 
-    //(^< ............ ............ ............ Retrorno de Rango: String
+    //(^< ............ ............ ............ ............ ............ Retrorno de Rango: String
     int StringRangeReturn(QString TmpStr){
         SimpleNode * TmpNode = First;
         int Eval = TmpStr.compare(TmpNode->Clt->Nit);
@@ -117,7 +125,7 @@ public:
         return cnt;
     }
 
-    //(^< ............ ............ ............ Insertar ordenado por: Nit
+    //(^< ............ ............ ............ ............ ............ Insertar ordenado por: Nit
     int InsertSortedByNit(Cliente * TmpClient){
         //Verificamos que la lista no este vacia
         if(!InsertWhenEmpty(TmpClient)){
@@ -135,7 +143,7 @@ public:
         }
     }
 
-    //(^< ............ ............ ............ Validar Codigo Unico
+    //(^< ............ ............ ............ ............ ............ Validar Codigo Unico
     bool ValidateUnique(QString Code){
 
         ID_Rank = StringRangeReturn(Code);
@@ -145,7 +153,7 @@ public:
         return true;
     }
 
-    //(^< ............ ............ ............ Insertar cuando la Lista este Vacia
+    //(^< ............ ............ ............ ............ ............ Insertar cuando la Lista este Vacia
     bool InsertWhenEmpty(Cliente * TmpClient){
         if(ListSize == 0){
             First = Last = new SimpleNode(TmpClient);
@@ -156,7 +164,7 @@ public:
         return false;
     }
 
-    //(^< ............ ............ ............ Insertar al Frente
+    //(^< ............ ............ ............ ............ ............ Insertar al Frente
     bool FrontInsert(Cliente * TmpClient){
         if(!InsertWhenEmpty(TmpClient)){
              SimpleNode * TmpNode = new SimpleNode(TmpClient);
@@ -170,11 +178,11 @@ public:
         return false;
     }
 
-    //(^< ............ ............ ............ Insertar al Fondo
+    //(^< ............ ............ ............ ............ ............ Insertar al Fondo
     bool EndInsert(Cliente * TmpClient){
         if(!InsertWhenEmpty(TmpClient)){
             SimpleNode * TmpNode = new SimpleNode(TmpClient);
-            
+
             Last->Next = TmpNode;
             Last = TmpNode;
             ListSize ++;
@@ -183,7 +191,7 @@ public:
         return false;
     }
 
-    //(^< ............ ............ ............ Obtener Nodo Espesifico
+    //(^< ............ ............ ............ ............ ............ Obtener Nodo Espesifico
     SimpleNode * GetNode(int index){
         if(index == 0){
             return First;
@@ -209,9 +217,9 @@ public:
         return NULL;
     }
 
-    //(^< ............ ............ ............ Eliminar Nodo segun Indice
+    //(^< ............ ............ ............ ............ ............ Eliminar Nodo segun Indice
     void DeleteNode(int index){
-        if(ListSize != 0){
+        if(ListSize > 0){
             SimpleNode * TmpNode;
 
             //Eliminar al Inicio
@@ -219,6 +227,7 @@ public:
                  TmpNode = First;
                  First = First->Next;
                  delete(TmpNode);
+                 return;
 
             }
 
@@ -227,17 +236,22 @@ public:
                 TmpNode = Last;
                 Last = GetNode(index-1);
                 delete(TmpNode);
+                return;
             }
 
             //Eliminar valor Intermedio
-            TmpNode = GetNode(index);
-            GetNode(index-1)->Next = TmpNode->Next;
-            delete(TmpNode);
+            if(index != 0 && index < (ListSize-1))
+            {
 
+                TmpNode = GetNode(index);
+                GetNode(index-1)->Next = TmpNode->Next;
+                delete(TmpNode);
+                return;
+            }
         }
     }
 
-    //(^< ............ ............ ............ Busqueda Binaria
+    //(^< ............ ............ ............ ............ ............ Busqueda Binaria
     SimpleNode * BinarySearch(QString k){
 
         int Sup = ListSize;
@@ -245,9 +259,12 @@ public:
         int Inf = 0;
         int PM = (Sup + Inf)/2;
 
+        if(PM == ListSize){
+            PM--;
+        }
         SimpleNode * TmpNode = GetNode(PM);
 
-        while((Sup - Inf) > 0 && Cnt == 0){
+        while((Sup - Inf) > 0 && Cnt == 0 && TmpNode != NULL){
 
             if((Sup - Inf) == 1){
                 Cnt = 1;
@@ -319,7 +336,7 @@ public:
         */
     }
 
-    //(^< ............ ............ ............ Obtener nodo por Nit
+    //(^< ............ ............ ............ ............ ............ Obtener nodo por Nit
     SimpleNode * GetNodeByNit(QString Nit){
 
         return BinarySearch(Nit);
@@ -335,7 +352,8 @@ public:
         }
         */
     }
-    //(^< ............ ............ ............ Insertar en Indice Especifico
+
+    //(^< ............ ............ ............ ............ ............ Insertar en Indice Especifico
     bool InsertAt(int index,Cliente * TmpClient){
 
         //Inserta estando vacia la lista
@@ -377,6 +395,120 @@ public:
         return NULL;
 
     }
+
+    //(^< ............ ............ ............ ............ ............ ............ ............ ............ ............ ............
+    //(^< ............ ............ ............ ............ ............ P R O D U C T
+    //(^< ............ ............ ............ ............ ............ ............ ............ ............ ............ ............
+
+    /*
+    //(^< ............ ............ ............ ............ ............ P U S H
+    void Push_Product(Product * Prod){
+        if(ListSize != 0){
+            InsertAt(0,Prod);
+        }
+    }
+
+    //(^< ............ ............ ............ ............ ............ P O P
+    SimpleNode * Pop_Product(){
+        if(ListSize != 0){
+            SimpleNode * TmpNode = GetNode(0);
+            DeleteNode(0);
+            return TmpNode;
+        }
+        return NULL;
+
+    }
+
+    //(^< ............ ............ ............ ............ ............ Clear Stack
+    void ClearStack(){
+        if(ListSize > 0){
+            while(ListSize > 0){
+                DeleteNode(0);
+            }
+        }
+    }
+
+    //(^< ............ ............ ............ ............ ............ Insertar cuando la Lista este Vacia
+    bool InsertWhenEmpty(Product * TmpProd){
+        if(ListSize == 0){
+            First = Last = new SimpleNode(TmpProd);
+
+            ListSize ++;
+            return true;
+        }
+        return false;
+    }
+
+    //(^< ............ ............ ............ ............ ............ Insertar al Frente
+    bool FrontInsert(Product * TmpProd){
+        if(!InsertWhenEmpty(TmpProd)){
+             SimpleNode * TmpNode = new SimpleNode(TmpProd);
+
+
+             TmpNode->Next = First;
+             First = TmpNode;
+             ListSize++;
+             return true;
+        }
+        return false;
+    }
+
+    //(^< ............ ............ ............ ............ ............ Insertar al Fondo
+    bool EndInsert(Product * TmpProd){
+        if(!InsertWhenEmpty(TmpProd)){
+            SimpleNode * TmpNode = new SimpleNode(TmpProd);
+
+            Last->Next = TmpNode;
+            Last = TmpNode;
+            ListSize ++;
+            return true;
+        }
+        return false;
+    }
+
+    //(^< ............ ............ ............ ............ ............ Insertar en Indice Especifico
+    bool InsertAt(int index,Product * TmpProd){
+
+        //Inserta estando vacia la lista
+        if(index == 0 && ListSize == 0){
+            InsertWhenEmpty(TmpProd);
+            return true;
+        }
+
+        //Inserta al frente de la lista
+        if(index == 0 && ListSize > 0){
+            FrontInsert(TmpProd);
+            return true;
+        }
+
+        //Agrega un nuevo elemento al final de la lista
+        if(index == (ListSize)){
+            EndInsert(TmpProd);
+            return true;
+        }
+
+
+        //Inserta en un punto intermedio
+        if(index >= 1 && index < ListSize){
+
+            //Linkeo
+            SimpleNode * TmpNode = GetNode(index-1);
+            SimpleNode * NewNode = new SimpleNode(TmpProd);
+
+
+            NewNode->Next = TmpNode->Next;
+            TmpNode->Next = NewNode;
+
+            ListSize++;
+
+            return true;
+
+        }
+
+        return NULL;
+
+    }
+    */
 };
 
 #endif // SIMPLELIST_H

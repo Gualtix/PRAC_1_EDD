@@ -2,6 +2,7 @@
 #define PRODUCTS_H
 
 #include "QString"
+#include "detalle_factura.h"
 
 class Product
 {
@@ -13,7 +14,7 @@ public:
     QString Name;
     QString Description;
 
-    int SortValue;
+    bool Is_in_Use = false;
 
     Product() {
         Code  = "";
@@ -21,6 +22,7 @@ public:
         Units = 0;
         Name  = "";
         Description = "";
+        Is_in_Use = false;
     }
 
     //(^< ............ ............ ............ Constructor
@@ -30,8 +32,8 @@ public:
         Units = Unt;
         Name  = Nm;
         Description = Desc;
-
-        SortValue = 0;
+        Is_in_Use = false;
+        //SortValue = 0;
     }
 
     //(^< ............ ............ ............ Actualizar Informacion del Producto
@@ -41,6 +43,7 @@ public:
         Units = Unt;
         Name  = Nm;
         Description = Desc;
+        Is_in_Use = false;
     }
 
      //(^< ............ ............ ............ Destructor
@@ -51,8 +54,9 @@ public:
         Units = 0;
         Name  = "";
         Description = "";
+        Is_in_Use = false;
 
-        SortValue = 0;
+        //SortValue = 0;
     }
 };
 

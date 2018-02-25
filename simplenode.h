@@ -1,6 +1,5 @@
 #ifndef SIMPLENODE_H
 #define SIMPLENODE_H
-#include "factura.h"
 #include "cliente.h"
 
 
@@ -21,12 +20,14 @@ public:
         Clt = TmpCliente;
         Next = NULL;
     }
+
+
+
     //(^< ............ ............ ............ Destructor
     ~SimpleNode(){
         Next = NULL;
         delete Clt;
     }
-
 };
 
 #endif // SIMPLENODE_H

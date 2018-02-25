@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core
+QT += printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -37,7 +38,12 @@ HEADERS += \
     cliente.h \
     simplelist.h \
     factura.h \
-    simplenode.h
+    simplenode.h \
+    factu_list.h \
+    factu_node.h \
+    detalle_factura.h \
+    productstack.h \
+    stacknode.h
 
 FORMS += \
         mainwindow.ui
